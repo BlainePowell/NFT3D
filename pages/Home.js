@@ -1,9 +1,16 @@
 import styles from '/styles/Home.module.css'
 import Nav from './components/Nav';
-import Test from './components/test';
 import Link from 'next/link'
+import { useEffect } from 'react';
+import { useWeb3React } from '@web3-react/core';
 
 function Land() {
+    const { account } = useWeb3React();
+
+    useEffect(() => {
+        console.log(account)
+    }, [])
+
     return (
         <div className={styles.background}>
             <div className={styles.nav}>
@@ -15,8 +22,8 @@ function Land() {
                 console.log('sex')
             }}>EXPLORE</h1>
             </Link>
-            <Link href='/signin'>
-            <h1 className={styles.signup}>SIGN IN</h1>
+            <Link href='/wallet'>
+            <h1 className={styles.signup}>Wallet</h1>
             </Link>
         </div>
         </div>
