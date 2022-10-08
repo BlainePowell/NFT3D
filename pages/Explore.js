@@ -1,10 +1,11 @@
 import styles from '/styles/Home.module.css';
-import Side from './components/SideBar'
+import Nav from './components/Nav'
 
 function Explore() {
     return (
         <div className={styles.background}>
-            <Side />
+            <Nav/>
+            <div className={styles.break}/>
         </div>
     )
 }

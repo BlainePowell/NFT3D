@@ -1,3 +1,15 @@
+/* central box */
+
+.central {
+  position: absolute;
+  height: 100%;
+  left: 5%;
+  width: 90%;
+  top: 0%;
+  max-width: 3000px;
+  background-color: red;
+}
+
 /* Model Component */
 
 .astro {
@@ -312,6 +324,48 @@
 }
 
 .test input {
-  margin-left: 50px;
-  width: 300px;
+  display: none;
+  width: 0px;
+}
+
+/* Explore Page */
+
+.break {
+  position: absolute;
+  left: 3%;
+  width: 94%;
+  height: 1px;
+  top: 600px;
+  background-color: white;
+}
+
+/* Mint Page */
+
+.background2 {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: #02010A;
+}
+
+.glb {
+  position: absolute;
+  left: 2%;
+  width: 500px;
+  height: 500px;
+  top: 225px;
+  background-color: grey;
+  border-radius: 20px;
+}
+
+.glb input {
+  width: 100%;
+  height: 100%;
+  color: transparent;
+}
+
+.glb input::file-selector-button {
+  display: none;
 }
