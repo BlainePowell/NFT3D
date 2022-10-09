@@ -2,10 +2,13 @@ import styles from '/styles/Home.module.css';
 import { useState } from 'react';
 import Nav from './components/Nav';
 import { useRouter } from 'next/router';
+import { BiArrowToBottom } from 'react-icons/bi';
+import { Router } from 'react-router';
 
 
 function Create() {
     const [form, setForm] = useState({ asset: '', description: '', price: '', blockchain: ''});
+    const router = useRouter();
 
     const createModel = async () => {
         try {
@@ -17,7 +20,7 @@ function Create() {
                 },
                 body: JSON.stringify(form)
             })
-          router.push("/Explore");
+          router.push("/")
         } catch (error) {
             console.log(error);
         }
@@ -41,8 +44,10 @@ function Create() {
             <Nav/>
             <div className={styles.glb}>
                 <input type="file"/>
+                <BiArrowToBottom className={styles.glbicon} />
             </div>
-            <div>
+            <div className={styles.glbinput}>
+                <h1>Create an asset.</h1>
                 <form onSubmit={handleSubmit}>
                 <input
                 onChange={handleChange}
@@ -64,8 +69,8 @@ function Create() {
                 type="text"
                 placeholder="Ethereum"
                 name="blockchain"/>
+                <button>Mint</button>
                 </form>
-                <button />
             </div>
             </div>
         </div>
