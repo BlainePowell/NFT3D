@@ -10,6 +10,8 @@ function Create() {
     const [form, setForm] = useState({ asset: '', description: '', price: '', blockchain: ''});
     const router = useRouter();
 
+    // api route api/create
+
     const createModel = async () => {
         try {
             const res = await fetch('http://localhost:3000/api/create', {
