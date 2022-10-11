@@ -17,6 +17,8 @@ function Wallet() {
     const [userAccount, setAccount] = useState('')
     const [ connected, setConnected ] = useState(false);
     const [ accountSignature, setAccountSignature ] = useState('')
+    const [newU, setNewU] = useState("");
+    const [newS, setNewS] = useState("");
 
     const web3 = new Web3(Web3.givenProvider)
 
@@ -37,19 +39,6 @@ function Wallet() {
         }
     }
 
-    const bullShit = () => {
-        setForm({
-            ...form,
-            'address' : "Blaine Cock",
-            'signature' : "Josh Cock"
-        })
-        console.log(form)
-    }
-
-const Injected = new InjectedConnector({
-    supportedChainIds: [1, 3, 4, 5, 42, 56, 97, 1337]
-})
-
 const connectWallet = () => { 
     const { ethereum } = window;
 
@@ -65,13 +54,32 @@ const connectWallet = () => {
 } 
 
 const authenticateUser = async () => {
-    const user = await web3.eth.getAccounts()
-    console.log(user[0])
-    setAccount(user[0])
+    const user = await web3.eth.getAccounts();
     const signature = await web3.eth.personal.sign(web3.utils.utf8ToHex("Hello world"), user[0])
-    setAccountSignature(signature)
-    console.log(accountSignature)
+    const testing = { address: user[0], signature: signature}
+    try {
+        const res = await fetch('http://localhost:3000/api/users', {
+            method: 'POST',
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(testing)
+        })
+      router.push("/");
+    } catch (error) {
+        console.log(error);
+    }
 }
+
+useEffect(() => {
+    setForm({
+        ...form,
+        'address' : newU,
+        'signature' : newS
+    })
+    console.log(form)
+}, [newS])
 
 
     const checkWallet = () => {
@@ -142,7 +150,6 @@ return (
        />
        <button />
    </form>
-   <button onClick={bullShit} />
    </div>
    <div>
                 {connected ? (

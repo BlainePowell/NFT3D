@@ -22,7 +22,7 @@ function Create() {
                 },
                 body: JSON.stringify(form)
             })
-          router.push("/")
+          router.push("/Explore")
         } catch (error) {
             console.log(error);
         }
