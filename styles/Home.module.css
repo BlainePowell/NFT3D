@@ -334,7 +334,7 @@
   left: 3%;
   width: 94%;
   height: 1px;
-  top: 600px;
+  top: 650px;
   background-color: white;
 }
 
@@ -452,4 +452,68 @@
 
 .glbinput input::first {
   margin-top: 0px;
+}
+
+.displayasset {
+  position: absolute;
+  top: 651px;
+  left: 3%;
+  width: 94%;
+  height: 900px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.asset {
+  margin-top: 50px;
+  margin-left: 2.5%;
+  width: 30%;
+  height: 600px;
+  border-radius: 15px;
+  border: 2px solid white;
+  background-color: #3c3b4a;
+}
+
+.asset img {
+  position: inherit;
+  height: 60%;
+  width: 100%;
+  top: 0%;
+  left: 0%;
+  background-color: #02010A;
+  border-radius: 15px 15px 0px 0px;
+  border-bottom: 2px solid white;
+}
+
+.asset h1 {
+  position: inherit;
+  margin-top: 15px;
+  margin-left: 20px;
+  font-size: 200%;
+  color: white;
+}
+
+.owner {
+  position: inherit;
+  margin-top: -5px;
+  margin-left: 20px;
+  font-size: 150%;
+  color: white;
+}
+
+.price {
+  position: inherit;
+  margin-top: 40px;
+  margin-left: 20px;
+  color: white;
+  font-weight: bold;
+  font-size: 120%;
+}
+
+.priceactual {
+  position: inherit;
+  margin-top: -10px;
+  color: white;
+  margin-left: 20px;
+
 }

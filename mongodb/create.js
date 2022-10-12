@@ -17,7 +17,11 @@ const CreateSchema = new mongoose.Schema({
     },
     blockchain: {
         type: String,
-        required: true,
+        required: true
+    },
+    urlpath: {
+        type: String,
+        required: true
     }
 }, {
     timestamps: true,

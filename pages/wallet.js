@@ -7,20 +7,29 @@ import { WalletConnectConnector } from '@web3-react/walletconnect-connector';
 import { InjectedConnector } from '@web3-react/injected-connector';
 import Web3 from 'web3';
 import { useRouter } from 'next/router';
+import axios from 'axios';
+import { Router } from 'react-router';
 
-function Wallet() {
-    const [form, setForm] = useState({ address: '', signature: '' })
+export default function Wallet() {
+    const [ form, setForm ] = useState({ address: '', signature: '' })
     const [ isSubmitting, setIsSubmitting ] = useState(false);
     const [ errors, setErrors ] = useState({});
     const router = useRouter();
-    const [ user, setUser ] = useState({signature: '', account: ''})
     const [userAccount, setAccount] = useState('')
     const [ connected, setConnected ] = useState(false);
-    const [ accountSignature, setAccountSignature ] = useState('')
-    const [newU, setNewU] = useState("");
-    const [newS, setNewS] = useState("");
 
     const web3 = new Web3(Web3.givenProvider)
+
+
+    useEffect(() => {
+        if (isSubmitting) {
+            if (Object.keys(errors).length === 0) {
+                createAccount();
+            } else {
+                setIsSubmitting(false)
+            }
+        }
+    }, [errors])
 
 
     const createAccount = async () => {
@@ -33,7 +42,7 @@ function Wallet() {
                 },
                 body: JSON.stringify(form)
             })
-          router.push("/");
+          router.push('/');
         } catch (error) {
             console.log(error);
         }
@@ -47,6 +56,7 @@ const connectWallet = () => {
     }
     try {
         const accounts = ethereum.request({ method: 'eth_requestAccounts' });
+        setAccount(account)
         console.log("Found an account! Address: ", account);
     } catch (err) {
         console.log(err)
@@ -55,8 +65,11 @@ const connectWallet = () => {
 
 const authenticateUser = async () => {
     const user = await web3.eth.getAccounts();
+    console.log(user)
     const signature = await web3.eth.personal.sign(web3.utils.utf8ToHex("Hello world"), user[0])
+    console.log(signature)
     const testing = { address: user[0], signature: signature}
+    console.log(testing)
     try {
         const res = await fetch('http://localhost:3000/api/users', {
             method: 'POST',
@@ -72,15 +85,6 @@ const authenticateUser = async () => {
     }
 }
 
-useEffect(() => {
-    setForm({
-        ...form,
-        'address' : newU,
-        'signature' : newS
-    })
-    console.log(form)
-}, [newS])
-
 
     const checkWallet = () => {
         const { ethereum } = window;
@@ -92,6 +96,22 @@ useEffect(() => {
             console.log("wallet found.")
         }
      }
+
+    function connectWalletButton() {
+        return (
+            <div>
+                {connected ? (
+             <button className={styles.connect} onClick={authenticateUser}>
+                Login
+             </button>
+                  )  :  (
+                    <button className={styles.connect} onClick={connectWallet}>
+                        Connect Wallet
+                     </button>
+                )}
+             </div>
+        )
+    }
 
     const onceConnect = () => {
         return (
@@ -109,9 +129,13 @@ useEffect(() => {
         }
      }
 
-     useEffect((e) => {
-        const interval = setInterval((e) => {
-             isConnect();
+     useEffect(() => {
+        console.log(userAccount)
+     })
+
+     useEffect(() => {
+        const interval = setInterval(() => {
+            isConnect();
         }, 100);
         return () => clearInterval(interval);
      }, [])
@@ -121,7 +145,6 @@ useEffect(() => {
             ...form,
             [e.target.name]: e.target.value
      })
-     walletform.form.submit();
      }
 
 return (
@@ -140,13 +163,14 @@ return (
        </Link>
    </div>
    <div className={styles.test} >
-   <form onSubmit={createAccount} id="walletform">
+   <form onSubmit={createAccount}>
        <input 
        onChange={handleChange}
        name="title"
-       value={accountSignature}
        />
         <input 
+       onChange={handleChange}
+       name="description"
        />
        <button />
    </form>
@@ -165,5 +189,3 @@ return (
    </div>
 )
 }
-
-export default Wallet;
