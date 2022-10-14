@@ -8,12 +8,10 @@ function Nav() {
             <img className={styles.logo} src='reactlogo.png' />
         </Link>
         <Link href='/Explore'>
-        <h1 className={styles.explore} onClick={() => {
-            console.log('sex')
-        }}>EXPLORE</h1>
+        <h1 className={styles.explore}>EXPLORE</h1>
         </Link>
-        <Link href='/signin'>
-        <h1 className={styles.signup}>SIGN IN</h1>
+        <Link href='/wallet'>
+        <h1 className={styles.signup}>WALLET</h1>
         </Link>
     </div>
     )

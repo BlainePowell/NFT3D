@@ -34,6 +34,7 @@
     "python": "^0.0.4",
     "react": "^18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.4.0",
     "react-moralis": "^1.4.2",
     "react-router": "^6.4.1",
     "three": "^0.142.0",

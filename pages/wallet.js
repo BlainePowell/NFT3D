@@ -11,14 +11,12 @@ import axios from 'axios';
 import { Router } from 'react-router';
 
 export default function Wallet() {
-    const [ form, setForm ] = useState({ title: '', description: '' })
+    const [ form, setForm ] = useState({ address: '', signature: '' })
     const [ isSubmitting, setIsSubmitting ] = useState(false);
     const [ errors, setErrors ] = useState({});
     const router = useRouter();
-    const [ user, setUser ] = useState({signature: '', account: ''})
     const [userAccount, setAccount] = useState('')
     const [ connected, setConnected ] = useState(false);
-    const [ accountSignature, setAccountSignature ] = useState('')
 
     const web3 = new Web3(Web3.givenProvider)
 
@@ -36,7 +34,7 @@ export default function Wallet() {
 
     const createAccount = async () => {
         try {
-            const res = await fetch('http://localhost:3000/api/notes', {
+            const res = await fetch('http://localhost:3000/api/users', {
                 method: 'POST',
                 headers: {
                     "Accept": "application/json",
@@ -44,36 +42,11 @@ export default function Wallet() {
                 },
                 body: JSON.stringify(form)
             })
-          router.push("/");
+          router.push('/');
         } catch (error) {
             console.log(error);
         }
     }
-
-const Coinbase = new WalletLinkConnector({
-    url: 'https://mainnet.infura.io/v3/${process.env.INFURA_KEY}',
-    appName:'NFT3D',
-    supportedChainIds:[1,3,4,5,42],
-})
-
-const WalletConnect = new WalletConnectConnector({
-    rpcUrl: `https://mainnet.infura.io/v3/${process.env.INFURA_KEY}`,
-    bridge: 'https://bridge.walletconnect.org',
-    qrcode: true,
-})
-
-const Injected = new InjectedConnector({
-    supportedChainIds: [1, 3, 4, 5, 42, 56, 97, 1337]
-})
-
-async function connect() {
-    try {
-        await activate(Injected);
-        window.location.href='/profile';
-    } catch (err) {
-        console.log(err)
-    }
-}
 
 const connectWallet = () => { 
     const { ethereum } = window;
@@ -91,12 +64,25 @@ const connectWallet = () => {
 } 
 
 const authenticateUser = async () => {
-    const user = await web3.eth.getAccounts()
-    console.log(user[0])
-    setUser(user[0])
+    const user = await web3.eth.getAccounts();
+    console.log(user)
     const signature = await web3.eth.personal.sign(web3.utils.utf8ToHex("Hello world"), user[0])
-    setAccountSignature(signature)
-    handleForm();
+    console.log(signature)
+    const testing = { address: user[0], signature: signature}
+    console.log(testing)
+    try {
+        const res = await fetch('http://localhost:3000/api/users', {
+            method: 'POST',
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(testing)
+        })
+      router.push("/");
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 

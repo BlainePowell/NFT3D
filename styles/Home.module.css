@@ -1,3 +1,14 @@
+/* central box */
+
+.central {
+  position: absolute;
+  height: 100%;
+  left: 5%;
+  width: 90%;
+  top: 0%;
+  max-width: 3000px;
+}
+
 /* Model Component */
 
 .astro {
@@ -312,6 +323,197 @@
 }
 
 .test input {
-  margin-left: 50px;
-  width: 300px;
+  display: none;
+  width: 0px;
+}
+
+/* Explore Page */
+
+.break {
+  position: absolute;
+  left: 3%;
+  width: 94%;
+  height: 1px;
+  top: 650px;
+  background-color: white;
+}
+
+/* Mint Page */
+
+.background2 {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: #02010A;
+}
+
+.glb {
+  position: absolute;
+  left: 2%;
+  width: 500px;
+  height: 500px;
+  top: 225px;
+  background-color: rgb(136, 118, 180);
+  border-radius: 20px;
+  border: 2px solid white;
+}
+
+.glb:hover {
+  background-color: #241942;
+  transition: .2s;
+  color: white;
+}
+
+.glb:not(:hover) {
+  background-color: rgb(136, 118, 180);
+  transition: .2s;
+}
+
+.glb input {
+  width: 100%;
+  height: 100%;
+  color: transparent;
+}
+
+.glb input::file-selector-button {
+  display: none;
+}
+
+.glbicon {
+  position: absolute;
+  left: 175px;
+  top: 175px;
+  width: 150px;
+  height: 150px;
+}
+
+.glbinput {
+  position: absolute;
+  left: 45%;
+  top: 225px;
+  width: 55%;
+  height: 500px;
+}
+
+.glbinput {
+  font-size: 250%;
+  color: white;
+}
+
+.glbinput button {
+  position: absolute;
+  margin-top: 20px;
+  width: 150px;
+  height: 50px;
+  border-radius: 10px;
+  border: 2px solid white;
+  background-color: rgb(136, 118, 180);
+}
+
+.glbinput button:hover {
+  border: 2px solid white;
+  color: white;
+  background-color: #241942;
+  transition: .2s;
+}
+
+.glbinput button:not(:hover) {
+  background-color: rgb(136, 118, 180);
+  color: black;
+  transition: .2s;
+}
+
+
+.glbinput input {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 25px;
+  width: 80%;
+  height: 35px;
+  border: 2px solid white;
+  border-radius: 10px;
+  background-color: rgb(136, 118, 180);
+  color: white;
+}
+
+.glbinput input:focus {
+  background-color: #241942;
+}
+
+.glbinput input::placeholder {
+  color: black;
+}
+
+.glbinput input:focus::placeholder {
+  color: white;
+}
+
+.glbinput input::first {
+  margin-top: 0px;
+}
+
+.displayasset {
+  position: absolute;
+  top: 651px;
+  left: 3%;
+  width: 94%;
+  height: 900px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.asset {
+  margin-top: 50px;
+  margin-left: 2.5%;
+  width: 30%;
+  height: 600px;
+  border-radius: 15px;
+  border: 2px solid white;
+  background-color: #3c3b4a;
+}
+
+.asset img {
+  position: inherit;
+  height: 60%;
+  width: 100%;
+  top: 0%;
+  left: 0%;
+  background-color: #02010A;
+  border-radius: 15px 15px 0px 0px;
+  border-bottom: 2px solid white;
+}
+
+.asset h1 {
+  position: inherit;
+  margin-top: 15px;
+  margin-left: 20px;
+  font-size: 200%;
+  color: white;
+}
+
+.owner {
+  position: inherit;
+  margin-top: -5px;
+  margin-left: 20px;
+  font-size: 150%;
+  color: white;
+}
+
+.price {
+  position: inherit;
+  margin-top: 40px;
+  margin-left: 20px;
+  color: white;
+  font-weight: bold;
+  font-size: 120%;
+}
+
+.priceactual {
+  position: inherit;
+  margin-top: -10px;
+  color: white;
+  margin-left: 20px;
+
 }

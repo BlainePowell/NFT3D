@@ -28,3 +28,20 @@
             console.log(err)
         }
     } 
+
+
+const Coinbase = new WalletLinkConnector({
+    url: 'https://mainnet.infura.io/v3/${process.env.INFURA_KEY}',
+    appName:'NFT3D',
+    supportedChainIds:[1,3,4,5,42],
+})
+
+const WalletConnect = new WalletConnectConnector({
+    rpcUrl: `https://mainnet.infura.io/v3/${process.env.INFURA_KEY}`,
+    bridge: 'https://bridge.walletconnect.org',
+    qrcode: true,
+})
+
+// IPFS, why it works for our use case. Explanation as to why our files are secure
+
+"For every new upload of new data or previous uploaded data, a new cryptographic hash (CID) is generated, making every upload to the network unique and resistant to security breaches or tampering." - https://blog.logrocket.com/decentralized-data-storage-using-ipfs-and-react-a-tutorial-with-examples/
