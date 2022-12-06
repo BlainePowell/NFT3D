@@ -24,21 +24,19 @@ contract NFT_3D is ERC721URIStorage,Ownable{
 	}
 
     //Only the owner of this smart contract can mint NFTs
-    //may need to change this because it only allows for one owner
-	function mintToken() public onlyOwner {
+    //may need to change this because it only allows for only one owner
+    //URI will utilize IPFS
+	function mintToken(string memory _URI) public onlyOwner {
         _tokenIds.increment();
         uint256 newitem = _tokenIds.current();
         _safeMint(msg.sender,newitem);
-	}
-    //URI will utilize IPFS
-    function setmetadata(string memory _URI, uint256 _tokenID) public{
-        _setTokenURI(_tokenID, _URI);
+        _setTokenURI(_tokenID,_URI);
     }
 
     // Only the owner of the smart contract can call this function and above
     // The owner would be the address that deploys this smart contract
     function transfer_NFT(address  _seller, address _buyer, uint256 _tokenID) public{
-         safeTransferFrom(_seller,_buyer, _tokenID);
+         safeTransferFrom(_seller,_buyer, _tokenID);    
     }
 }
 
